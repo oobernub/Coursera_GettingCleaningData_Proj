@@ -32,11 +32,11 @@ data$ActNum <- gsub("6", activityL[6,2], data$ActNum)
 ##extracteddata is a new table that just pulls subj, activity and columns with mean and std.
 meanstd <- grep("mean|std", names(data))
 extracteddata <- data[,c(1,2,meanstd)]
-write.table(extracteddata, "extracteddata.txt")
+write.table(extracteddata, "extracteddata.txt", row.name=FALSE)
 
 ##averages by subject and actnum. 
 ##orders them
 averageddata <- aggregate(extracteddata[,3:81], by = list(extracteddata$subject, extracteddata$ActNum), FUN = mean)
 averageddata <- averageddata[order(averageddata$Group.1, averageddata$Group.2),]
-write.table(averageddata, "averagedata.txt")
+write.table(averageddata, "averagedata.txt", row.name=FALSE)
 
